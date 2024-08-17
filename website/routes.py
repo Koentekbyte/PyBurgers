@@ -1,7 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, redirect
 
 routes = Blueprint("routes",__name__)
 
 @routes.route("/")
 def home():
-    return "Sigma Page"
+    return redirect("/kiosk")
