@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-kitchenDisplay = Blueprint("kitchenDisplay ",__name__)
+kitchenDisplay = Blueprint("kitchenDisplay",__name__)
 
 @kitchenDisplay.route("/")
 def menu():

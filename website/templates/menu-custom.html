@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="navbar">
+        <ul>
+
+            <li><a href="/kiosk/burgers"><img src="/static/burger-icon.png"></a></li>
+            <li><a href="/kiosk/sides"><img src="/static/fries-icon.png"></a></li>
+            <li><a href="/kiosk/drinks"><img src="/static/drinks-icon.png"></a></li>
+            <li><a href="/kiosk/order"><img src="/static/order-icon.png"></a></li>
+                        
+        </ul>
+    </div>
+    <div id="customiser">
+        <ul>
+            <li><img src= {{customToken[1]}}></li>
+            <li><h2>{{customToken[0]}}</h2></li>
+            <li>Add/Remove Mustard</li>
+            <li>Add/Remove Ketchup</li>
+            <li>Add/Remove Mayonaise</li>
+            <li>Add/Remove Pickles</li>
+
+                        
+        </ul>
+    </div>
+    
+    
+      
+{% endblock content %}

@@ -1,7 +1,49 @@
-
-
-body {
-    background-color: black;
-    color: green;
+#navbar
+{
+    height: 100%;
+    width: 12%;
+    position: fixed;
+    top: 0px; left: 0px;
+    background-color: grey;
+    
+    
+}
+#navbar li
+{
+    margin: 50px 0;
 }
 
+#navbar ul
+{
+    list-style: none;
+}
+div.grid-container 
+{
+    display: inline-grid;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    grid-template-columns: auto auto auto;
+    gap: 100px 200px;
+    text-align: center;
+
+}
+
+.onit 
+{
+    filter: brightness(35%);
+}
+
+#customiser
+{
+    position: fixed;
+    top: 10%;
+    left: 50%;
+
+}
+#customiser ul
+{
+    list-style: none;
+    text-align: center;
+}
