@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block content %}
     <div id="navbar">
         <ul>
@@ -11,4 +12,131 @@
             
         </ul>
     </div>
+    <div id="basketHolder" style="text-align: left;">
+        {% if basket == "empty" %}
+            <h1>Empty Basket</h1>
+
+        {% else %}
+        
+        <form method="post">
+            {% set totalPrice = [] %}
+            <div id="burger_wall">
+                {% for order_item, menu_item, order in basket %}
+                
+                
+                {% if menu_item.foodType == "burger" %}
+                    {% if totalPrice.append(menu_item.price)%}{% endif %}
+                    <img src={{menu_item.picture}} width="25" height="25" style="vertical-align: middle;"><button class = "{{order_item.itemID}}" id="{{order_item.itemID}}-btn" onclick="toggle(event,this.id)">{{menu_item.itemName}}</button><br>
+                    {% for mod in order_item.modifications.split(",")%}
+                        {% set mod_type = mod.split("_")[0]|lower %}
+                        {% set mod_level = mod.split("_")[1]|lower %}
+                        <p style="margin: 2px 0;" class="{{order_item.itemID}}" name="{{order_item.itemID}}">{{mod_type}} {{mod_level}}</p>
+                    {% endfor %}
+                {% endif %}
+                    <input class = "{{order_item.itemID}}" type="hidden" id="{{order_item.itemID}}-state" name="{{order_item.itemID}}-state" value="1">
+                {% endfor %}
+            </div>
+            
+            <div id="drinks_wall">
+                {% for order_item, menu_item, order in basket %}
+                {% if menu_item.foodType == "drinks" %}
+                    {% if totalPrice.append(menu_item.price)%}{% endif %}
+                    
+                    <img src={{menu_item.picture}} width="25" height="25" style="vertical-align: middle;"><button class = "{{order_item.itemID}}" id="{{order_item.itemID}}-btn" onclick="toggle(event,this.id)">{{menu_item.itemName}}</button><br>
+                    
+                    {% for mod in order_item.modifications.split(",")%}
+                        {% set mod_type = mod.split("_")[0]|lower %}
+                        {% set mod_level = mod.split("_")[1]|lower %}
+                        <p style="margin: 2px 0;" class="{{order_item.itemID}}" name="{{order_item.itemID}}">{{mod_type}} {{mod_level}}</p>
+                    {% endfor %}
+                {% endif %}
+                    <input class = "{{order_item.itemID}}" type="hidden" id="{{order_item.itemID}}-state" name="{{order_item.itemID}}-state" value="1">
+                {% endfor %}
+            </div>
+            <div id="sides_wall">
+                {% for order_item, menu_item, order in basket %}
+                {% if menu_item.foodType == "sides" %}
+                    {% if totalPrice.append(menu_item.price)%}{% endif %}
+                    <img src={{menu_item.picture}} width="25" height="25" style="vertical-align: middle;"><button class = "{{order_item.itemID}}" id="{{order_item.itemID}}-btn" onclick="toggle(event,this.id)">{{menu_item.itemName}}</button><br>
+                
+                    {% for mod in order_item.modifications.split(",")%}
+                        {% set mod_type = mod.split("_")[0]|lower %}
+                        {% set mod_level = mod.split("_")[1]|lower %}
+                        <p style="margin: 2px 0;" class="{{order_item.itemID}}" name="{{order_item.itemID}}">{{mod_type}} {{mod_level}}</p>
+                    {% endfor %}
+                {% endif %}
+                    <input class = "{{order_item.itemID}}" type="hidden" id="{{order_item.itemID}}-state" name="{{order_item.itemID}}-state" value="1">
+                {% endfor %}
+            </div>    
+        {% endif %}
+        <div id="finalButtonHolder">
+            <input id = "submission" type="submit" value="Confirm changes" formaction="confirm" method="post">
+            <input id = "payment" type="submit" value="Pay" method="post" formaction="payment">
+            <input id = "restart" type="submit" value="Restart" method="post" formaction="restart">
+            <p>£{{ '%0.2f' | format(totalPrice | sum) }}</p>
+        </div>
+        </form>
+    </div>
+    
+    <script>
+        function toggle(event,valID)
+            {
+                event.preventDefault();
+
+                let button = document.getElementById(valID);
+                let buttonChildren = document.getElementsByName(button.className.split(" ")[0]);
+                let relatedInput = document.getElementsByName(button.className.split(" ")[0]+"-state")[0];
+
+                
+                console.log(buttonChildren);
+                
+                button.classList.remove('strikethrough', 'normal', 'bold');
+                for (let i = 0; i < buttonChildren.length; i++)
+                {
+                    buttonChildren[i].classList.remove('strikethrough');
+                    console.log(buttonChildren[i].className);
+                }
+                //console.log(button);
+                
+                 
+                
+                
+                //console.log(relatedInput);
+                console.log(relatedInput.value);
+                
+                toggleState = Number(relatedInput.value);
+                
+                
+
+                
+                
+                if (toggleState == 0)
+                {
+                    relatedInput.value = 1;
+                // button.style.textDecoration = "None";
+                    button.classList.add('normal');
+                    console.log("Value: "+relatedInput.value);
+                    for (let i = 0; i < buttonChildren.length; i++)
+                    {
+                        buttonChildren[i].classList.remove('strikethrough');
+
+                    }
+                }
+                if (toggleState == 1)
+                {
+                    relatedInput.value = 0;
+                    //button.style.textDecoration = "None";
+                // button.style.fontWeight= "bold";
+                    button.classList.add('strikethrough');
+                    for (let j = 0; j < buttonChildren.length; j++)
+                    {
+                       
+                        buttonChildren[j].classList.add('strikethrough');
+                    }
+                    console.log("Value:"+relatedInput.value);
+                }
+                
+            }
+    </script>
+
 {% endblock content %}

@@ -29,6 +29,18 @@ div.grid-container
     text-align: center;
 
 }
+div.grid-container-drinks
+{
+    display: inline-grid;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    grid-template-columns: auto auto auto;
+    gap: 100px 200px;
+    text-align: center;
+
+}
 
 .onit 
 {
@@ -40,10 +52,117 @@ div.grid-container
     position: fixed;
     top: 10%;
     left: 50%;
+    text-align: center;
 
 }
-#customiser ul
+#customiser ul 
 {
+    
+    justify-content: center;
+    align-items: center;
     list-style: none;
+    height: 200px;
+    padding: 0;
     text-align: center;
+    margin-bottom: 60px;
+}
+.optionsHolder button
+{
+    border: none;              
+    background-color: transparent;
+    font-size: medium;
+}
+
+#customiser 
+{
+    
+   
+    align-items: center;
+}
+.strikethrough {
+    text-decoration: line-through;
+    font-weight: normal;
+}
+
+.normal {
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.bold {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#basketHolder
+{
+    align-items: center;
+}
+#basketHolder button
+{
+    border: none;              
+    background-color: transparent;
+    font-size: medium;
+}
+
+#basketHolder
+{
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    text-align: center;
+
+}
+
+.optionsHolder
+{
+    display: inline-block; /* Make the div inline-block so it can be centered */
+    margin: 0 auto;        /* Center it horizontally */
+    text-align: center;      /* Align content inside the div if necessary */
+}
+
+#burger_wall
+{
+    height: 100%;
+    width: 12%;
+    position: fixed;
+    top: 0px; left: 500px;
+
+}
+
+
+#sides_wall
+{
+    height: 100%;
+    width: 12%;
+    position: fixed;
+    top: 0px; left: 1000px;
+
+}
+
+#drinks_wall
+{
+    height: 100%;
+    width: 12%;
+    position: fixed;
+    top: 0px; left: 1500px;
+
+
+}
+#finalButtonHolder
+{
+    height: 20%;
+    width: 20%;
+    position: fixed;
+    text-align: center;
+    
+    top: 800px; left: 900px;
+}
+
+#successmsg
+{
+    position: fixed;
+    top: 0px; left: 50%;
+    text-align: center;
+
 }

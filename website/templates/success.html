@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="navbar">
+        <ul>
+            <li><a href="burgers"><img src="/static/burger-icon.png"></a></li>
+            <li><a href="sides"><img src="/static/fries-icon.png"></a></li>
+            <li><a href="drinks"><img src="/static/drinks-icon.png"></a></li>
+            <li><a href="order"><img src="/static/order-icon.png"></a></li>
+            
+            
+        </ul>
+    </div>
+    <div id ="successmsg">
+        <h1>Order #{{statusNum}} successfully placed!</h1>
+    </div>
+{% endblock content %}

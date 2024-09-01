@@ -6,7 +6,7 @@ db = SQLAlchemy()
 DB_NAME = "PyBurgers.db"
 def create_app():
     app = Flask(__name__)
-    app.config["SECRET KEY"] = "UFEIFBEBFOEFBOBH" 
+    app.secret_key = "UFEIFBEBFOEFBOBH" 
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
     db.init_app(app)
 
@@ -33,9 +33,3 @@ def create_app():
 
 
 
-def populate_database():
-        if db.keys():
-            print("DB not empty")
-    
-        if not db.keys():
-            print("DB is empty")

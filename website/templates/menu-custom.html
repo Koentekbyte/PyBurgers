@@ -13,17 +13,181 @@
     </div>
     <div id="customiser">
         <ul>
-            <li><img src= {{customToken[1]}}></li>
-            <li><h2>{{customToken[0]}}</h2></li>
-            <li>Add/Remove Mustard</li>
-            <li>Add/Remove Ketchup</li>
-            <li>Add/Remove Mayonaise</li>
-            <li>Add/Remove Pickles</li>
+            <li><img src= {{customToken.picture}}></li>
+            {% if "_" in customToken.itemName %}
 
-                        
+            <li><h2>{{customToken.itemName|replace("_", " ")}} - £{{customToken.price}}</h2></li>
+
+            {% else %}
+            <li><h2>{{customToken.itemName}} - £{{customToken.price}}</h2></li> 
+
+            {% endif %}
+            <li><h3>{{customToken.description}}</h3></li>
+            
+                       
         </ul>
+        <div class="optionsHolder">
+            <form action="/kiosk/submit" method="post">
+                
+
+                {% for i in customToken.base_fixings.split(",")%}
+
+                {% if "No" in i%}
+
+                <button class = "{{i[2:]}} strikethrough" id="{{i[2:]}}-btn" onclick="toggle(event,this.id)">{{i[2:]}}</button><br><br>
+                <input class = "{{i[2:]}}" type="hidden" id="{{i[2:]}}-state" name="{{i[2:]}}" value="0">
+
+                {% else %}
+
+                <button class = "{{i}} normal" id="{{i}}-btn" onclick="toggle(event,this.id)">{{i}}</button><br><br>
+                <input  class = "{{i}}" type="hidden" id="{{i}}-state" name="{{i}}" value="1">
+                {% endif %}
+                {%endfor%}
+
+                <input type="submit" value="Add to order">
+
+            </form>
+        </div> 
     </div>
+    {% if customToken.foodType == "burger" %}
+        <script>
+            function toggle(event,valID)
+            {
+                event.preventDefault();
+
+                let button = document.getElementById(valID);
+                let relatedInput = document.getElementsByName(button.className.split(" ")[0])[0];
+
+                button.classList.remove('strikethrough', 'normal', 'bold');
+                console.log("func called burger");
+
+                console.log(relatedInput);
+                console.log(relatedInput.value);
+                
+                toggleState = Number(relatedInput.value);
+                toggleState = toggleState + 1;
+                console.log(toggleState);
+
+                
+                
+                if (toggleState == 1)
+                {
+                    relatedInput.value = 1;
+                // button.style.textDecoration = "None";
+                    button.classList.add('normal');
+                    console.log(relatedInput.value);
+                }
+                if (toggleState == 2)
+                {
+                    relatedInput.value = 2;
+                    //button.style.textDecoration = "None";
+                // button.style.fontWeight= "bold";
+                    button.classList.add('bold');
+                    console.log(relatedInput.value);
+                }
+                if (toggleState == 3)
+                {
+                    relatedInput.value = 0;
+                //  button.style.textDecoration = "line-through;";
+                    button.classList.add('strikethrough');
+                    console.log(relatedInput.value);
+                }
+                console.log(relatedInput.value);
+            }
+       
+        </script>
+    {% elif customToken.foodType == "sides" %}
+        <script>
+            function toggle(event,valID)
+            {
+                event.preventDefault();
+
+                let button = document.getElementById(valID);
+                let relatedInput = document.getElementsByName(button.className.split(" ")[0])[0];
+
+                button.classList.remove('strikethrough', 'normal', 'bold');
+                console.log("func called sides");
+
+                console.log(relatedInput);
+                console.log(relatedInput.value);
+                
+                toggleState = Number(relatedInput.value);
+                toggleState = toggleState + 1;
+                console.log(toggleState);
+
+                
+                
+                if (toggleState == 1)
+                {
+                    relatedInput.value = 1;
+                // button.style.textDecoration = "None";
+                    button.classList.add('normal');
+                    console.log(relatedInput.value);
+                }
+                if (toggleState == 2)
+                {
+                    relatedInput.value = 0;
+                    //button.style.textDecoration = "None";
+                // button.style.fontWeight= "bold";
+                    button.classList.add('strikethrough');
+                    console.log(relatedInput.value);
+                }
+                
+            }
     
+        </script>
+    {% else %}
+        <script>
+            function toggle(event,valID)
+            {
+                event.preventDefault();
+
+                let button = document.getElementById(valID);
+                let relatedInput = document.getElementsByName(button.className.split(" ")[0])[0];
+
+                button.classList.remove('strikethrough', 'normal', 'bold');
+                console.log("func called drinks");
+
+                console.log(relatedInput);
+                console.log(relatedInput.value);
+                
+                toggleState = Number(relatedInput.value);
+                toggleState = toggleState + 1;
+                console.log(toggleState);
+
+                
+                
+                if (toggleState == 1)
+                {
+                    relatedInput.value = 1;
+                // button.style.textDecoration = "None";
+                    //button.classList.add('normal');
+                    button.innerHTML = "Medium"
+                    console.log(relatedInput.value);
+                }
+                if (toggleState == 2)
+                {
+                    relatedInput.value = 2;
+                    //button.style.textDecoration = "None";
+                // button.style.fontWeight= "bold";
+                    //utton.classList.add('strikethrough');
+                    console.log(relatedInput.value);
+                    button.innerHTML = "Large"
+                }
+                if (toggleState == 3)
+                {
+                    relatedInput.value = 0;
+                    //button.style.textDecoration = "None";
+                // button.style.fontWeight= "bold";
+                    //utton.classList.add('strikethrough');
+                    console.log(relatedInput.value);
+                    button.innerHTML = "Small"
+                }
+                
+            }
     
+        </script>
+
+    {% endif %}
       
 {% endblock content %}
