@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/kstyle.css">
+    
+    <meta http-equiv="refresh" content="3">
+   
+    <title>PyBurgers' Kitchen</title>
+   
+    
+    
+</head>
+<body>
+    
+    {%if orderDict %}
+        <div class="grid-container">
+            <form>
+            {% for keys, values in orderDict|items %}
+            <div class="grid-item">
+                <form>
+                <input type="submit" value="Order #{{keys}} completed?" formaction="finished/{{keys}}">
+                
+                <ul>
+                    {% for order_item, menu_item in values %}
+                    <li><img src={{menu_item.picture}} width="25" height="25" style="vertical-align: middle;"> {{menu_item.itemName}}</li>
+                    <li>
+                    <ul>
+                        {% for mod in order_item.modifications.split(",") %}
+                        {% set mod_type = mod.split("_")[0]|lower %}
+                        {% set mod_level = mod.split("_")[1]|lower %}
+                        <li><i>{{mod_type}} {{mod_level}}</i></li>
+                        {% endfor %}
+                    </ul>
+                    </li>
+                    {%endfor%}
+            
+                </ul>
+                </form>
+                
+            </div>
+            {% endfor %}
+    {% else %}
+        <h1>No received orders...</h1>
+    {% endif %}
+
+    </div> 
+    
+    
+    
+
+    
+</body>
+</html>

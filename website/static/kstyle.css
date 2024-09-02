@@ -1,0 +1,47 @@
+div.grid-container 
+{
+    display: inline-grid;
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    
+    grid-template-columns: auto auto auto auto;
+    gap: 35px 90px;
+    text-align: center;
+   
+    
+    
+}
+div.grid-item
+{
+    height: 400px;
+    width: 400px;
+    overflow: auto;
+    background-color: rgb(70, 70, 70);
+    border-radius: 25px;
+    color: white;
+
+}
+
+ul 
+{
+    text-align: left;
+    list-style: none;
+}
+input
+{
+    position: relative;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    
+    
+}
+* {
+    
+    font-family: 'Courier New', Courier, monospace;
+   }
+
+body
+{
+    background-color: gray;
+}

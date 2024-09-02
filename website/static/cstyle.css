@@ -1,0 +1,83 @@
+
+#received
+{
+    position: fixed;
+    height: 800px;
+    
+
+    top: 15%;
+    left: 0;
+    width: 50%;
+    text-align: center;
+    color: gray;
+    overflow: auto;
+    
+}
+#finished
+{
+    position: fixed;
+    height: 800px;
+    width: 50%;
+    
+    top: 15%;
+    right: 0;
+    text-align: center;
+    color: green;
+    background-color: gray;
+    
+    overflow: auto;
+}
+
+ul{
+    list-style: none;
+    
+   
+    
+}
+li {
+    margin: 20px 0;
+    font-size: 75px;
+    
+    
+}
+#heading_r
+{
+    position: fixed;
+    top: 2%;
+    left: 21%;
+    font-size: 50px;
+    color: white;
+}
+#heading_f
+{
+    position: fixed;
+    top: 2%;
+    right: 10%;
+    font-size: 50px;
+    color: white;
+}
+
+#heading
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 15%;
+    width: 100%;
+    
+    background-color: rgb(71, 71, 71);
+}
+* {
+    
+    font-family: 'Courier New', Courier, monospace;
+   }
+button
+{
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    
+}

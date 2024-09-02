@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/cstyle.css">
+    <meta http-equiv="refresh" content="3">
+    <title>PyBurgers' display</title>
+</head>
+<body>
+    <div id="heading">
+        <h1 id="heading_r">Cooking</h1>
+    
+    
+        <h1 id="heading_f">Ready-to-collect</h1>
+
+    </div>
+   
+
+    <div id="received">
+    <ul>
+        {% for i in displayOrders %} 
+        {% if i.status == "received" %}
+        <li>Order #{{i.orderID}}</li>
+        {% endif%}
+        {% endfor %}
+    </ul>
+    </div>
+    <div id = "finished">
+    <form>
+    <ul>
+        {% for i in displayOrders %}
+        {% if i.status == "finished" %}
+        <li><button type="submit" formaction="collected/{{i.orderID}}">Order #{{i.orderID}}</button></li>
+        {% endif %}
+        {% endfor %}
+    
+    </ul>
+    </form>
+    </div>
+</body>
+</html>
