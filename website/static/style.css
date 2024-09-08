@@ -5,6 +5,7 @@
     position: fixed;
     top: 0px; left: 0px;
     background-color: grey;
+    min-width: 230px;
     
     
 }
@@ -16,6 +17,8 @@
 #navbar ul
 {
     list-style: none;
+    
+    overflow: hidden;
 }
 div.grid-container 
 {
